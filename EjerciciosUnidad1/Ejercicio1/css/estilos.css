@@ -16,15 +16,40 @@ body {
 }
 
 .col {
-  background-color: #f0f0f0;
+  background-color: red;
   padding: 20px;
   text-align: center;
   flex: 1 1 100%; /* Cada columna ocupa el 100% del ancho en dispositivos pequeños */
 }
 
-/* Media query para pantallas más grandes */
-@media only screen and (min-width: 768px) {
-  .col {
-    flex: 1 1 33.33%; /* Las columnas se dividen en tres partes iguales en pantallas grandes */
-  }
+
+/* En pantallas medianas (600px – 1024px) el fondo debe ser amarillo.  */
+@media only screen and (min-width: 600px) and (max-width: 1024px){
+    .col{
+        background-color: yellow;
+    }
 }
+/*  En pantallas grandes (más de 1024px) el fondo debe ser verde. */
+@media only screen and (min-width: 1024px){
+    .col{
+        background-color: green;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .col{
+        font-size: 14px;
+    }
+} 
+
+@media only screen and (min-width: 481px) and (max-width: 768px){
+    .col{
+        font-size: 18px;
+    }
+} 
+
+@media only screen and (min-width: 769px){
+    .col{
+        font-size: 22px;
+    }
+} 
