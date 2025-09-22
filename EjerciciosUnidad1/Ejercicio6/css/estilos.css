@@ -1,0 +1,47 @@
+/* Estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las columnas se ajusten en varias filas si es necesario */
+  gap: 0;          /* Móviles: sin separación */
+}
+
+.col {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  flex: 1 1 100%; /* Cada columna ocupa el 100% del ancho en dispositivos pequeños */
+}
+
+/* Tabletas: 481px – 768px */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .container {
+    gap: 10px; /* separación de 10px */
+  }
+  .col {
+    flex: 1 1 50%; /* dos columnas por fila */
+  }
+  .col:nth-child(3) {
+    flex-basis: 100%; /* la tercera baja sola */
+  }
+}
+
+/* Escritorio: 769px en adelante */
+@media only screen and (min-width: 769px) {
+  .container {
+    gap: 30px; /* separación de 30px */
+  }
+  .col {
+    flex: 1 1 33.33%; /* tres columnas en una sola fila */
+  }
+}

@@ -1,0 +1,43 @@
+/* Estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap; /* permite que salten de línea */
+  gap: 10px;       /* espacio entre columnas */
+}
+
+/* --- MÓVILES: máx 480px --- */
+.col {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  flex: 1 1 100%;        /* cada columna ocupa 100% */
+}
+
+/* --- TABLETAS: 481px – 768px --- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .col {
+    flex: 1 1 calc(50% - 10px); /* dos columnas por fila (resta gap) */
+  }
+  /* Para asegurar que la tercera baje sola */
+  .col:nth-child(3) {
+    flex-basis: 100%;
+  }
+}
+
+/* --- ESCRITORIO: 769px en adelante --- */
+@media (min-width: 769px) {
+  .col {
+    flex: 1 1 calc(33.33% - 10px); /* tres columnas en una sola fila */
+  }
+}
