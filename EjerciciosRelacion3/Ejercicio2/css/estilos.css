@@ -1,0 +1,33 @@
+.layout {
+    /* TODO: Contenedor centrado con ancho máximo y márgenes auto */
+   margin: 0 auto;
+   max-width: 1200px;
+   text-align: center;
+}
+
+.card {
+    /* TODO: Ancho en %, borde/sombra, radio, overflow si procede */
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px (0, 0, 0, 0,1);
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+.card__img {
+    /* TODO: display:block; width:100%; height:auto; */
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card__body {
+    /* TODO: Usa rem para paddings */
+    padding: 1rem;
+}
+
+.card__title,
+.card__text {
+    /* TODO: Tipografía con rem */
+    font-size: 1rem;
+}

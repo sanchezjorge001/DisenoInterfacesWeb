@@ -1,0 +1,24 @@
+.hero {
+    /* TODO: height:100vh; fondo y centrado del contenido */
+    height: 100vh;
+    text-align: center;
+}
+
+.hero__inner {
+    /* TODO: Controla ancho con % o vw y centra */
+    width: 100%;
+    text-align: center;
+}
+
+.hero__title {
+    /* TODO: Tamaño de fuente relativo (rem o vw) */
+    font-size: 4rem;
+}
+
+.hero__cta {
+    /* TODO: Padding en rem; borde; radio */
+    padding: 1rem 2rem;
+    border: 2px solid #fff;
+    border-radius: 0.5em;
+    background: gray;
+}
