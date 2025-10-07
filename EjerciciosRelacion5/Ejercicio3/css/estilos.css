@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.layout {
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "aside"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 16px;
+}
+
+/* ✅ Áreas nombradas */
+.header { grid-area: header; background: #4a90e2; color: white; }
+.nav    { grid-area: nav;    background: #50e3c2; }
+.main   { grid-area: main;   background: #f5a623; }
+.aside  { grid-area: aside;  background: #bd10e0; color: white; }
+.footer { grid-area: footer; background: #7ed321; }
+
+.box {
+  padding: 16px;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-areas:
+      "header  header"
+      "nav     main"
+      "nav   aside"
+      "footer  footer";
+
+    grid-template-columns: 1fr 3fr; 
+    grid-template-rows: auto;
+  }
+}
