@@ -1,0 +1,104 @@
+/* Header */
+header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333333;
+  padding: 10px 20px;
+}
+
+/* Título */
+h2 {
+  color: aliceblue;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Menú principal */
+nav.menu {
+  display: flex;
+  gap: 20px; /* espacio entre enlaces */
+}
+
+nav.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.3s;
+}
+
+nav.menu a:hover {
+  background-color: #111111;
+  border-radius: 5px;
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Imagen */
+img {
+  width: 100%;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.item img {
+  width: 100%;
+  display: block;
+}
+
+.item figcaption {
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Responsive: Menú hamburguesa */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav.menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #333333;
+    margin-top: 10px;
+  }
+
+  nav.menu.show {
+    display: flex;
+  }
+
+  nav.menu a {
+    padding: 12px;
+    border-top: 1px solid #444;
+  }
+}
