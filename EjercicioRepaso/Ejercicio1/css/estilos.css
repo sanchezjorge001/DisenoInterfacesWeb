@@ -1,104 +1,163 @@
-/* Header */
-header div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333333;
-  padding: 10px 20px;
+/* ===============================
+   RESET BÁSICO Y VARIABLES
+=================================*/
+
+/* Aplica box-sizing a todos los elementos para incluir padding y borde en el cálculo total del tamaño */
+* {
+  box-sizing: border-box;
 }
 
-/* Título */
-h2 {
-  color: aliceblue;
-  font-family: Arial, Helvetica, sans-serif;
+/* Variables CSS (personalizables) */
+:root {
+  --maxw: 1100px; /* Anchura máxima del contenido principal */
+  --gap: 16px;    /* Espacio estándar entre elementos */
 }
 
-/* Menú principal */
-nav.menu {
-  display: flex;
-  gap: 20px; /* espacio entre enlaces */
+/* ===============================
+   CONFIGURACIÓN GENERAL
+=================================*/
+
+/* Tamaño base de fuente para toda la página */
+html {
+  font-size: 16px;
 }
 
-nav.menu a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 15px;
-  transition: background 0.3s;
+/* Estilos básicos del cuerpo del documento */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif; /* Fuente del sistema, moderna y legible */
+  color: #111;                        /* Color principal del texto */
 }
 
-nav.menu a:hover {
-  background-color: #111111;
-  border-radius: 5px;
-}
-
-/* Botón hamburguesa */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Imagen */
+/* Ajuste global de imágenes para que nunca sobresalgan de su contenedor */
 img {
-  width: 100%;
-}
-
-/* Gallery */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.item {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.item img {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
   display: block;
 }
 
-.item figcaption {
-  padding: 8px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #333;
+/* ===============================
+   CABECERA (HEADER)
+=================================*/
+
+/* Contenedor principal del encabezado */
+.site-header {
+  display: flex;                          /* Alineación horizontal de los elementos */
+  align-items: center;                    /* Centra verticalmente */
+  justify-content: space-between;         /* Separa logo y navegación */
+  gap: 16px;                              /* Espacio entre elementos */
+  padding: 12px 16px;                     /* Relleno interno */
+  border-bottom: 1px solid #e5e7eb;       /* Línea inferior ligera */
 }
 
-/* Responsive: Menú hamburguesa */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
+/* Navegación del sitio: oculta por defecto en móviles */
+.site-nav {
+  display: none;
+  gap: 12px;                              /* Espacio entre enlaces */
+}
 
-  nav.menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #333333;
-    margin-top: 10px;
-  }
-
-  nav.menu.show {
+/* En pantallas grandes, muestra la navegación */
+@media (min-width: 1024px) {
+  .site-nav {
     display: flex;
   }
+}
 
-  nav.menu a {
-    padding: 12px;
-    border-top: 1px solid #444;
-  }
+/* ===============================
+   SECCIÓN HERO (IMAGEN PRINCIPAL)
+=================================*/
+
+.hero {
+  position: relative;   /* Necesario para posicionar el texto sobre la imagen */
+  display: grid;
+}
+
+/* Imagen principal del hero */
+.hero img {
+  width: 100%;
+  aspect-ratio: 16/10;  /* Mantiene proporción de 16:10 */
+  object-fit: cover;    /* Asegura que la imagen cubra todo el contenedor */
+}
+
+/* Texto superpuesto sobre la imagen */
+.hero-text {
+  position: absolute;
+  inset: auto 16px 16px 16px;              /* Posición: 16px desde los lados e inferior */
+  background: rgba(255, 255, 255, .85);    /* Fondo blanco semitransparente */
+  padding: 16px;
+  border-radius: 12px;                     /* Bordes redondeados */
+}
+
+/* Botón reutilizable */
+.btn {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none; /* Quita subrayado de enlaces */
+}
+
+/* ===============================
+   GRID DE TARJETAS
+=================================*/
+
+.grid {
+  max-width: var(--maxw); /* Limita la anchura */
+  margin: 24px auto;      /* Centra el grid con margen superior e inferior */
+  display: grid;
+  gap: var(--gap);        /* Usa el espacio definido en la variable */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Diseño responsivo */
+  padding: 0 16px;        /* Espacio lateral */
+}
+
+/* Tarjeta individual */
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;   /* Evita que el contenido se desborde */
+  background: #fff;
+}
+
+/* Texto descriptivo de la tarjeta */
+.card figcaption {
+  padding: 8px;
+  text-align: center;
+}
+
+/* ===============================
+   SECCIONES ABOUT Y CONTACT
+=================================*/
+
+.about,
+.contact {
+  max-width: var(--maxw);
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* Mapa embebido */
+.map {
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000; /* Fondo negro de reserva mientras carga */
+}
+
+/* Ajuste del iframe del mapa */
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ===============================
+   PIE DE PÁGINA (FOOTER)
+=================================*/
+
+.site-footer {
+  text-align: center;
+  padding: 24px 16px;
+  border-top: 1px solid #e5e7eb; /* Línea superior ligera */
+  margin-top: 24px;
 }

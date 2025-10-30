@@ -1,0 +1,318 @@
+/* ============================================
+   RESETEO Y VARIABLES
+============================================ */
+
+/* Incluye padding y borde dentro del tamaño total del elemento */
+* {
+  box-sizing: border-box;
+}
+
+/* Variables globales reutilizables */
+:root {
+  --maxw: 1100px; /* Anchura máxima del contenido */
+  --gap: 16px;    /* Espacio estándar entre elementos */
+}
+
+/* ============================================
+   CONFIGURACIÓN GENERAL
+============================================ */
+
+html {
+  font-size: 16px; /* Tamaño base del texto */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif; /* Fuente moderna del sistema */
+  color: #111; /* Color principal del texto */
+}
+
+img {
+  max-width: 100%; /* Evita que la imagen sobresalga */
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   CABECERA (HEADER)
+============================================ */
+
+/* Cabecera con grid para logo, espacio flexible y botón menú */
+.site-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* Logo - espacio - botón */
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+
+  position: sticky; /* Se mantiene fija al hacer scroll */
+  top: 0;
+  background: #fff;
+  z-index: 10; /* Asegura que quede sobre otros elementos */
+}
+
+/* Marca o nombre del sitio */
+.brand {
+  font-weight: 700;
+}
+
+/* ============================================
+   MENÚ BURGER (para móviles)
+============================================ */
+
+/* Botón de menú hamburguesa */
+.burger {
+  cursor: pointer;
+  display: inline-grid;
+  gap: 5px; /* Espacio entre las líneas */
+  background: none;
+  border: 0;
+  padding: 8px;
+}
+
+/* Líneas del icono hamburguesa */
+.burger span {
+  width: 24px;
+  height: 2px;
+  background: #111;
+  display: block;
+  transition: transform .25s, opacity .2s;
+  transform-origin: 12px 1px; /* Centro de rotación */
+}
+
+/* ============================================
+   MENÚ LATERAL DESPLEGABLE
+============================================ */
+
+/* Contenedor del menú móvil (oculto por defecto) */
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100dvh; /* Ocupa toda la altura visible */
+  background: #fff;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  transform: translateX(100%); /* Oculto fuera de pantalla */
+  transition: transform .3s; /* Desliza suavemente */
+}
+
+/* Cuando el menú está abierto */
+.menu.is-open {
+  transform: translateX(0); /* Entra desde la derecha */
+}
+
+/* Enlaces dentro del menú */
+.menu a {
+  text-decoration: none;
+  color: #111;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+/* ============================================
+   FONDO OSCURECIDO (overlay)
+============================================ */
+
+/* Fondo semitransparente que aparece al abrir el menú */
+.overlay {
+  position: fixed;
+  inset: 0; /* Ocupa toda la pantalla */
+  background: rgba(0, 0, 0, .5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+
+/* Estado visible del overlay */
+.overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================
+   ANIMACIONES DEL BOTÓN BURGER
+============================================ */
+
+/* Primer trazo: se mueve y rota */
+.burger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+/* Segundo trazo: desaparece */
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+/* Tercer trazo: se mueve y rota al lado contrario */
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================
+   VERSIÓN ESCRITORIO
+   (A partir de 1024px)
+============================================ */
+
+@media (min-width: 1024px) {
+  /* Elimina burger y overlay en escritorio */
+  .burger,
+  .overlay {
+    display: none;
+  }
+
+  /* Muestra menú horizontal */
+  .menu {
+    position: static;
+    transform: none;
+    height: auto;
+    width: auto;
+    flex-direction: row;
+    gap: 16px;
+    padding: 0;
+  }
+}
+
+/* ============================================
+   SECCIÓN HERO (IMAGEN PRINCIPAL)
+============================================ */
+
+.hero {
+  position: relative;
+  display: grid;
+}
+
+/* Imagen principal adaptativa */
+.hero img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover; /* Mantiene proporción cubriendo todo el área */
+}
+
+/* Texto superpuesto sobre la imagen */
+.hero-text {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, .85);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+/* Botón general reutilizable */
+.btn {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+/* ============================================
+   CARTA DE MENÚ (ENTRANTES, PRINCIPALES, POSTRES)
+============================================ */
+
+.carta {
+  max-width: var(--maxw);
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* Estructura inicial: las secciones apiladas verticalmente */
+.grid-carta {
+  display: grid;
+  gap: 16px;
+  grid-template-areas:
+    "entrantes"
+    "principales"
+    "postres";
+}
+
+/* Asignación de cada área */
+.entrantes {
+  grid-area: entrantes;
+}
+.principales {
+  grid-area: principales;
+}
+.postres {
+  grid-area: postres;
+}
+
+/* En escritorio: 3 columnas horizontales */
+@media (min-width: 1024px) {
+  .grid-carta {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "entrantes principales postres";
+  }
+}
+
+/* ============================================
+   GRID DE TARJETAS GENÉRICO
+============================================ */
+
+.grid {
+  max-width: var(--maxw);
+  margin: 24px auto;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding: 0 16px;
+}
+
+/* Tarjeta individual */
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Texto de la tarjeta */
+.card figcaption {
+  padding: 8px;
+  text-align: center;
+}
+
+/* ============================================
+   CONTACTO Y MAPA
+============================================ */
+
+.contact {
+  max-width: var(--maxw);
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* Contenedor del mapa con proporción 16:9 */
+.map {
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Ajuste interno del iframe */
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ============================================
+   PIE DE PÁGINA
+============================================ */
+
+.site-footer {
+  text-align: center;
+  padding: 24px 16px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 24px;
+}

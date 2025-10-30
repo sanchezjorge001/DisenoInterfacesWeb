@@ -1,0 +1,155 @@
+/* ---------------------------------------------------
+   CONFIGURACIÓN GLOBAL
+--------------------------------------------------- */
+
+/* Aplicamos box-sizing a todos los elementos para evitar 
+   que padding o bordes aumenten el tamaño total */
+* {
+  box-sizing: border-box;
+}
+
+/* Variables globales reutilizables */
+:root {
+  --maxw: 1100px; /* ancho máximo del contenido principal */
+  --gap: 16px;    /* espacio base entre elementos */
+}
+
+/* Tamaño de fuente base del documento */
+html {
+  font-size: 16px;
+}
+
+/* Configuración general del cuerpo de la página */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif; /* fuente moderna predeterminada */
+  color: #111; /* texto en tono gris oscuro */
+}
+
+/* Asegura que las imágenes sean responsivas */
+img {
+  max-width: 100%; /* nunca sobrepasan el ancho del contenedor */
+  height: auto;    /* mantiene la proporción original */
+  display: block;  /* elimina espacios en línea debajo de las imágenes */
+}
+
+/* ---------------------------------------------------
+   CABECERA
+--------------------------------------------------- */
+
+/* Estilo simple del encabezado del sitio */
+.site-header {
+  padding: 16px; /* espacio interior */
+  border-bottom: 1px solid #e5e7eb; /* línea sutil inferior */
+}
+
+/* ---------------------------------------------------
+   SECCIÓN HERO (IMAGEN PRINCIPAL CON TEXTO)
+--------------------------------------------------- */
+
+.hero {
+  position: relative; /* permite posicionar el texto encima de la imagen */
+}
+
+/* Imagen del hero */
+.hero img {
+  width: 100%;                /* ocupa todo el ancho del contenedor */
+  aspect-ratio: 16 / 9;       /* mantiene proporción panorámica */
+  object-fit: cover;          /* recorta la imagen para llenar el espacio */
+}
+
+/* Texto superpuesto sobre la imagen del hero */
+.hero-text {
+  position: absolute;         /* se posiciona sobre la imagen */
+  bottom: 16px;               /* se coloca cerca de la parte inferior */
+  left: 16px;                 /* alineado a la izquierda */
+  background: rgba(255,255,255,0.85); /* fondo blanco semitransparente */
+  padding: 12px 16px;         /* espacio interno */
+  border-radius: 10px;        /* bordes redondeados */
+}
+
+/* ---------------------------------------------------
+   SECCIONES PRINCIPALES (AGENDA, SPEAKERS, MAPA)
+--------------------------------------------------- */
+
+/* Estructura base compartida por varias secciones */
+.agenda,
+.speakers,
+.map {
+  max-width: var(--maxw);     /* ancho máximo del contenido */
+  margin: 24px auto;          /* centrado vertical y horizontal */
+  padding: 0 16px;            /* margen lateral */
+}
+
+/* ---------------------------------------------------
+   AGENDA
+--------------------------------------------------- */
+
+/* Contenedor en cuadrícula para los elementos de la agenda */
+.grid-agenda {
+  display: grid;
+  gap: 12px; /* espacio entre elementos */
+}
+
+/* En pantallas medianas o mayores, mostramos 3 columnas */
+@media (min-width: 768px) {
+  .grid-agenda {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* ---------------------------------------------------
+   SPEAKERS (PONENTES)
+--------------------------------------------------- */
+
+/* Rejilla flexible de tarjetas de ponentes */
+.grid-speakers {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* auto-fit: ajusta automáticamente el número de columnas según el ancho disponible */
+}
+
+/* Tarjeta de cada ponente o elemento visual */
+.card {
+  border: 1px solid #e5e7eb;  /* borde sutil */
+  border-radius: 12px;        /* esquinas redondeadas */
+  overflow: hidden;           /* recorta el contenido que sobresalga */
+  background: #fff;           /* fondo blanco */
+}
+
+/* Texto dentro de cada tarjeta */
+.card figcaption {
+  padding: 8px;
+  text-align: center;
+}
+
+/* ---------------------------------------------------
+   MAPA O VIDEO EMBEBIDO (RESPONSIVE)
+--------------------------------------------------- */
+
+/* Contenedor con relación de aspecto fija */
+.ratio {
+  aspect-ratio: 16 / 9;   /* formato panorámico */
+  border-radius: 12px;    /* esquinas redondeadas */
+  overflow: hidden;       /* recorta el contenido dentro */
+  background: #000;       /* fondo negro de reserva */
+}
+
+/* Iframe dentro del contenedor ratio (por ejemplo, mapa o video) */
+.ratio iframe {
+  width: 100%;  /* ocupa todo el ancho */
+  height: 100%; /* ocupa todo el alto */
+  border: 0;    /* sin borde */
+}
+
+/* ---------------------------------------------------
+   PIE DE PÁGINA
+--------------------------------------------------- */
+
+.site-footer {
+  text-align: center;          /* texto centrado */
+  padding: 24px 16px;          /* espacio interno */
+  border-top: 1px solid #e5e7eb; /* línea superior */
+  margin-top: 24px;            /* separación del contenido anterior */
+}

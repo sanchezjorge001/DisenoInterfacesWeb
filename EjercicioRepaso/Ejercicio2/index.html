@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>La Buena Mesa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Enlace al archivo CSS -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <!-- CABECERA -->
+  <header class="site-header">
+    <div class="brand">La Buena Mesa</div> <!-- Nombre del restaurante -->
+    <!-- Botón hamburguesa para menú móvil -->
+    <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <!-- Menú de navegación -->
+    <nav class="menu" id="menu" hidden>
+      <a href="#hero">Inicio</a>
+      <a href="#carta">Carta</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <!-- Fondo oscuro cuando el menú está abierto -->
+    <div class="overlay" hidden></div>
+  </header>
+
+  <!-- HERO PRINCIPAL -->
+  <section id="hero" class="hero">
+    <picture>
+      <!-- Imagen para pantallas grandes -->
+      <source media="(min-width:1024px)" srcset="img/hero-horiz.svg">
+      <!-- Imagen por defecto (vertical / móvil) -->
+      <img src="img/hero-vert.svg" alt="Hero del restaurante">
+    </picture>
+    <div class="hero-text">
+      <h1>Cocina de temporada</h1>
+      <a class="btn" href="#carta">Ver carta</a> <!-- Botón que lleva a la carta -->
+    </div>
+  </section>
+
+  <!-- CARTA DEL RESTAURANTE -->
+  <section id="carta" class="carta">
+    <h2>Carta</h2>
+    <div class="grid-carta">
+      <!-- Categorías de la carta -->
+      <section class="entrantes">
+        <h3>Entrantes</h3>
+        <ul><li>Gazpacho</li><li>Ensaladilla</li></ul>
+      </section>
+      <section class="principales">
+        <h3>Principales</h3>
+        <ul><li>Arroz</li><li>Pescado</li></ul>
+      </section>
+      <section class="postres">
+        <h3>Postres</h3>
+        <ul><li>Flan</li><li>Tarta</li></ul>
+      </section>
+    </div>
+  </section>
+
+  <!-- GALERÍA DE PLATOS -->
+  <section id="galeria" class="grid">
+    <!-- Cada figura representa un plato -->
+    <figure class="card">
+      <img src="img/plato1-480.svg"
+           srcset="img/plato1-480.svg 480w, img/plato1-768.svg 768w, img/plato1-1024.svg 1024w"
+           sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+           alt="Plato 1">
+      <figcaption>Plato 1</figcaption>
+    </figure>
+
+    <!-- (Los demás platos se repiten con distintos nombres e imágenes) -->
+    <figure class="card">
+      <img src="img/plato2-480.svg"
+           srcset="img/plato2-480.svg 480w, img/plato2-768.svg 768w, img/plato2-1024.svg 1024w"
+           sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+           alt="Plato 2">
+      <figcaption>Plato 2</figcaption>
+    </figure>
+
+    <!-- ... hasta Plato 6 -->
+  </section>
+
+  <!-- UBICACIÓN / CONTACTO -->
+  <section id="contacto" class="contact">
+    <h2>Ubicación</h2>
+    <!-- Mapa embebido (por ahora un video de ejemplo) -->
+    <div class="map">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Mapa (demo)" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">© 2025 La Buena Mesa</footer>
+
+  <!-- Script para manejar el menú -->
+  <script src="js/menu.js"></script>
+</body>
+</html>

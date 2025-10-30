@@ -1,46 +1,38 @@
-* {
-  box-sizing: border-box;
-}
+/* Reset universal: hace que padding y border se incluyan en el ancho/alto total de los elementos */
+* { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-}
+/* Estilos base del body: sin márgenes y usando fuentes del sistema */
+body { margin: 0; font-family: system-ui, sans-serif; }
 
+/* Contenedor principal con Grid Layout */
 .layout {
-  display: grid;
-  min-height: 100vh;
+  display: grid; /* Activa CSS Grid */
+  grid-template-columns: 1fr; /* Una sola columna para móvil */
   grid-template-areas:
-    "header"
-    "nav"
-    "main"
-    "aside"
-    "footer";
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  gap: 16px;
+    "header"  /* Área para el header */
+    "nav"     /* Área para la navegación */
+    "main"    /* Área para el contenido principal */
+    "aside"   /* Área para la barra lateral */
+    "footer"; /* Área para el pie de página */
+  min-height: 100vh; /* Ocupa al menos toda la altura de la pantalla */
 }
 
-/* ✅ Áreas nombradas */
-.header { grid-area: header; background: #4a90e2; color: white; }
-.nav    { grid-area: nav;    background: #50e3c2; }
-.main   { grid-area: main;   background: #f5a623; }
-.aside  { grid-area: aside;  background: #bd10e0; color: white; }
-.footer { grid-area: footer; background: #7ed321; }
+/* Asignación de áreas y colores de fondo para cada sección */
+.header { grid-area: header; background: #dbeafe; } /* Azul claro */
+.nav { grid-area: nav; background: #dcfce7; }       /* Verde claro */
+.main { grid-area: main; background: #fef9c3; }     /* Amarillo claro */
+.aside { grid-area: aside; background: #fde68a; }   /* Amarillo oscuro */
+.footer { grid-area: footer; background: #fce7f3; } /* Rosa claro */
 
-.box {
-  padding: 16px;
-}
-
+/* Media Query para pantallas de escritorio (1024px o más) */
 @media (min-width: 1024px) {
   .layout {
+    grid-template-columns: 240px 1fr; /* Sidebar fijo de 240px + contenido flexible */
     grid-template-areas:
-      "header  header"
-      "nav     main"
-      "nav   aside"
-      "footer  footer";
-
-    grid-template-columns: 1fr 3fr; 
-    grid-template-rows: auto;
+      "header header"   /* Header ocupa ambas columnas */
+      "nav main"        /* Navegación izquierda, Contenido principal derecha */
+      "nav aside"       /* Navegación izquierda, Barra lateral derecha */
+      "footer footer";  /* Footer ocupa ambas columnas */
+    gap: 12px; /* Espacio de 12px entre elementos del grid */
   }
 }

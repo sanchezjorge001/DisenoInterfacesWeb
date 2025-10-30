@@ -1,41 +1,50 @@
-* {
-  box-sizing: border-box;
+/* Aplica box-sizing a todos los elementos.
+   Esto hace que el padding y el borde se incluyan en el tamaño total del elemento. */
+* { 
+  box-sizing: border-box; 
 }
 
-body {
-  font-family: system-ui, sans-serif;
-  margin: 24px;
+/* Estilos generales del cuerpo de la página */
+body { 
+  font-family: system-ui, sans-serif; /* Usa la fuente del sistema o sans-serif */
+  margin: 24px; /* Añade un margen de 24px alrededor del contenido */
 }
 
+/* Contenedor principal que muestra los elementos como una cuadrícula adaptable */
 .gallery {
-  display: grid;
+  display: grid; /* Activa el modo cuadrícula (CSS Grid) */
+  
+  /* Crea columnas automáticas que se ajustan al espacio disponible.
+     Cada columna tiene un tamaño mínimo de 200px y máximo de 1fr (una fracción del espacio). */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  
+  gap: 16px; /* Espacio entre los elementos de la galería */
 }
 
-
+/* Cada elemento individual de la galería */
 .item {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #ddd; /* Borde gris claro alrededor del elemento */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Oculta cualquier contenido que sobresalga (como imágenes grandes) */
+  
+  /* Añade una transición suave cuando cambia el tamaño o la sombra (hover) */
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
+/* Estilo de las imágenes dentro de cada elemento */
+.item img { 
+  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+  display: block; /* Quita espacios en blanco debajo de la imagen */
+}
+
+/* Estilo del texto que acompaña la imagen */
+.item figcaption { 
+  padding: 8px; /* Espaciado interno alrededor del texto */
+  text-align: center; /* Centra el texto */
+}
+
+/* Efecto al pasar el ratón por encima de un elemento */
 .item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.item img {
-  width: 100%;
-  display: block;
-}
-
-.item figcaption {
-  padding: 8px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #333;
+  transform: translateY(-4px); /* Mueve el elemento hacia arriba 4px (efecto de “flotar”) */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Añade una sombra suave para dar profundidad */
 }

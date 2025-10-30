@@ -1,0 +1,157 @@
+/* ===================================================
+   1) Reset y variables globales
+   =================================================== */
+* {
+  box-sizing: border-box; /* Incluye padding y border en ancho/alto de elementos */
+}
+
+:root {
+  --gap: 16px; /* Variable CSS para espaciado general */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif; /* Fuente del sistema */
+}
+
+/* ===================================================
+   2) Header / Navegación
+   =================================================== */
+.site-header {
+  position: relative; /* Para contener elementos posicionados absolutamente si hace falta */
+  display: grid; /* Grid para alinear logo, nav y burger */
+  grid-template-columns: auto 1fr auto; /* Logo | espacio flexible | burger/menu */
+  align-items: center; /* Centrar verticalmente */
+  gap: var(--gap); /* Separación entre columnas */
+  padding: 12px var(--gap); /* Espaciado interno */
+  border-bottom: 1px solid #e5e7eb; /* Línea inferior */
+}
+
+.brand {
+  font-weight: 700; /* Negrita para la marca */
+}
+
+/* ===================================================
+   3) Botón hamburguesa
+   =================================================== */
+.burger {
+  cursor: pointer;
+  display: inline-grid; /* Para alinear los spans verticalmente */
+  gap: 5px; /* Separación entre las líneas */
+  background: none;
+  border: 0;
+  padding: 8px;
+}
+
+.burger span {
+  width: 24px;
+  height: 2px;
+  background: #111; /* Color negro */
+  display: block;
+  transition: transform 0.25s ease, opacity 0.2s ease; /* Animación de apertura */
+  transform-origin: 12px 1px; /* Punto de rotación para animación */
+}
+
+/* ===================================================
+   4) Overlay (fondo semi-transparente al abrir menú)
+   =================================================== */
+.overlay {
+  position: fixed;
+  inset: 0; /* top/right/bottom/left = 0 */
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0; /* Invisible por defecto */
+  pointer-events: none; /* No interactúa si está oculto */
+  transition: opacity 0.3s ease;
+}
+
+.overlay.is-active {
+  opacity: 1;
+  pointer-events: auto; /* Interactúa cuando se activa */
+}
+
+/* ===================================================
+   5) Menú lateral (móvil)
+   =================================================== */
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100dvh; /* Altura total de la ventana */
+  background: #fff;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transform: translateX(100%); /* Oculto fuera de pantalla */
+  transition: transform 0.3s ease;
+}
+
+.menu.is-open {
+  transform: translateX(0); /* Aparece al abrir */
+}
+
+/* ===================================================
+   6) Animación de hamburguesa al abrir/cerrar
+   =================================================== */
+.burger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg); /* Línea superior -> diagonal */
+}
+
+.burger.is-open span:nth-child(2) {
+  opacity: 0; /* Línea del medio desaparece */
+}
+
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg); /* Línea inferior -> diagonal */
+}
+
+/* ===================================================
+   7) Menú en escritorio
+   =================================================== */
+@media (min-width: 1024px) {
+  .burger,
+  .overlay {
+    display: none; /* Oculta burger y overlay en escritorio */
+  }
+
+  .menu {
+    position: static; /* Normal flow */
+    transform: none; /* Sin desplazamiento */
+    height: auto;
+    width: auto;
+    flex-direction: row; /* Horizontal */
+    gap: 16px;
+    padding: 0;
+  }
+
+  /* Asegura que menú se muestre aunque tenga hidden */
+  .menu[hidden] {
+    display: flex;
+  }
+}
+
+/* ===================================================
+   8) Estilos de enlaces del menú
+   =================================================== */
+.menu a {
+  text-decoration: none;
+  color: #111;
+  padding: 8px 10px; /* Área de toque suficiente */
+  border-radius: 8px;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  background: #f3f4f6; /* Fondo suave al hover/focus */
+  outline: none; /* No outline default */
+}
+
+/* ===================================================
+   9) Contenido principal
+   =================================================== */
+.content {
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto; /* Centrado */
+}

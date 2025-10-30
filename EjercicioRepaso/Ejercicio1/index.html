@@ -1,33 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
-    <title>Mi Portfolio</title>
+  <!-- Codificación de caracteres -->
+  <meta charset="utf-8">
+
+  <!-- Título que se muestra en la pestaña del navegador -->
+  <title>Portfolio — Jordi Hurtado</title>
+
+  <!-- Ajuste de la escala y ancho del sitio en dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Enlace al archivo de estilos CSS externo -->
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <header>
-        <div>
-            <button class="menu-toggle" id="menu-toggle">☰</button>
-            <h2>Portfolio de Jorge</h2>
-            <nav class="menu" id="menu">
-                <a href="#">Inicio</a>
-                <a href="#">Proyectos</a>
-                <a href="#">Sobre mi</a>
-                <a href="#">Contacto</a>
-            </nav>
-        </div>
-    </header>
 
-    <div>
-        <img src="img/1.png">
+  <!-- =========================================
+       CABECERA (HEADER)
+       Contiene el nombre del autor y la navegación principal
+  ==========================================-->
+  <header class="site-header">
+    <!-- Marca o nombre personal -->
+    <h1 class="brand">Jordi Hurtado</h1>
+
+    <!-- Navegación principal del sitio -->
+    <nav class="site-nav">
+      <!-- Enlaces internos que apuntan a las secciones del mismo documento -->
+      <a href="#proyectos">Proyectos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- =========================================
+       SECCIÓN HERO
+       Imagen principal con texto de presentación
+  ==========================================-->
+  <section class="hero">
+    <!-- Uso de <picture> para imágenes adaptables según el tamaño de pantalla -->
+    <picture>
+      <!-- Imagen horizontal para pantallas grandes -->
+      <source media="(min-width:1024px)" srcset="img/hero-horiz.svg">
+      <!-- Imagen vertical por defecto (pantallas pequeñas) -->
+      <img src="img/hero-vert.svg" alt="Hero de Jordi Hurtado">
+    </picture>
+
+    <!-- Texto superpuesto sobre la imagen principal -->
+    <div class="hero-text">
+      <h2>Desarrollador Frontend</h2>
+      <p>CSS • Grid • Flex • Responsive • Accesibilidad</p>
+      <!-- Botón con enlace a la sección de proyectos -->
+      <a class="btn" href="#proyectos">Ver proyectos</a>
     </div>
-    <div class="gallery">
-        <figure class="item"><img src="img/3.webp" alt=""><figcaption>Project 1</figcaption></figure>
-        <figure class="item"><img src="img/2.jpg" alt=""><figcaption>Project 2</figcaption></figure>
-        <figure class="item"><img src="img/3.jpg" alt=""><figcaption>Project 3</figcaption></figure>
-        <figure class="item"><img src="img/4.jpg" alt=""><figcaption>Project 4</figcaption></figure>
+  </section>
+
+  <!-- =========================================
+       SECCIÓN DE PROYECTOS
+       Muestra un grid con tarjetas (figures) de los trabajos
+  ==========================================-->
+  <section id="proyectos" class="grid">
+    
+    <!-- Cada figure representa un proyecto -->
+    <figure class="card">
+      <!-- Imagen con diferentes resoluciones según el ancho del dispositivo -->
+      <img
+        src="img/proyecto1-480.svg"
+        srcset="img/proyecto1-480.svg 480w, img/proyecto1-768.svg 768w, img/proyecto1-1024.svg 1024w"
+        sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+        alt="Proyecto 1 de Jordi Hurtado">
+      <figcaption>Proyecto 1</figcaption>
+    </figure>
+
+    <figure class="card">
+      <img
+        src="img/proyecto2-480.svg"
+        srcset="img/proyecto2-480.svg 480w, img/proyecto2-768.svg 768w, img/proyecto2-1024.svg 1024w"
+        sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+        alt="Proyecto 2 de Jordi Hurtado">
+      <figcaption>Proyecto 2</figcaption>
+    </figure>
+
+    <figure class="card">
+      <img
+        src="img/proyecto3-480.svg"
+        srcset="img/proyecto3-480.svg 480w, img/proyecto3-768.svg 768w, img/proyecto3-1024.svg 1024w"
+        sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+        alt="Proyecto 3 de Jordi Hurtado">
+      <figcaption>Proyecto 3</figcaption>
+    </figure>
+
+    <figure class="card">
+      <img
+        src="img/proyecto4-480.svg"
+        srcset="img/proyecto4-480.svg 480w, img/proyecto4-768.svg 768w, img/proyecto4-1024.svg 1024w"
+        sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+        alt="Proyecto 4 de Jordi Hurtado">
+      <figcaption>Proyecto 4</figcaption>
+    </figure>
+
+    <figure class="card">
+      <img
+        src="img/proyecto5-480.svg"
+        srcset="img/proyecto5-480.svg 480w, img/proyecto5-768.svg 768w, img/proyecto5-1024.svg 1024w"
+        sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+        alt="Proyecto 5 de Jordi Hurtado">
+      <figcaption>Proyecto 5</figcaption>
+    </figure>
+
+    <figure class="card">
+      <img
+        src="img/proyecto6-480.svg"
+        srcset="img/proyecto6-480.svg 480w, img/proyecto6-768.svg 768w, img/proyecto6-1024.svg 1024w"
+        sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw"
+        alt="Proyecto 6 de Jordi Hurtado">
+      <figcaption>Proyecto 6</figcaption>
+    </figure>
+
+  </section>
+
+  <!-- =========================================
+       SECCIÓN SOBRE MÍ
+       Presentación personal breve
+  ==========================================-->
+  <section id="sobre-mi" class="about">
+    <h2>Sobre mí</h2>
+    <p>
+      Soy <strong>Jordi Hurtado</strong>, apasionado por el diseño responsive y la calidad web.
+    </p>
+  </section>
+
+  <!-- =========================================
+       SECCIÓN CONTACTO
+       Incluye un iframe simulado como mapa (demo)
+  ==========================================-->
+  <section id="contacto" class="contact">
+    <h2>Contacto</h2>
+
+    <!-- Contenedor del mapa con aspecto responsive -->
+    <div class="map">
+      <!-- En este caso, se ha puesto un vídeo de YouTube como demostración -->
+      <iframe
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="Mapa (demo)"
+        allowfullscreen>
+      </iframe>
     </div>
+  </section>
+
+  <!-- =========================================
+       PIE DE PÁGINA (FOOTER)
+       Información de derechos o cierre del sitio
+  ==========================================-->
+  <footer class="site-footer">
+    © 2025 Jordi Hurtado
+  </footer>
+
 </body>
 </html>

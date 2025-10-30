@@ -1,0 +1,51 @@
+/* ===================================================
+   1) Reset y tipografía base
+   =================================================== */
+* {
+  box-sizing: border-box; /* Incluye padding y border en el ancho/alto de elementos */
+}
+
+body {
+  font-family: system-ui, sans-serif; /* Fuente del sistema */
+  margin: 16px; /* Espaciado general alrededor del body */
+}
+
+/* ===================================================
+   2) Encabezados
+   =================================================== */
+h1, h2 {
+  margin: 8px 0 12px; /* Margen superior y inferior para separar secciones */
+}
+
+/* ===================================================
+   3) Contenedor de medios (video/iframe) responsivo usando padding-bottom
+   =================================================== */
+.media {
+  position: relative; /* Contenedor relativo para posicionar hijo absoluto */
+  width: 100%;        /* Ocupa todo el ancho del contenedor padre */
+  padding-bottom: 56.25%; /* 16:9 ratio (9 / 16 = 0.5625 = 56.25%) */
+  height: 0;          /* Altura inicial 0, determinada por el padding */
+  background: #111;   /* Fondo negro */
+  border-radius: 12px; /* Esquinas redondeadas */
+  overflow: hidden;    /* Oculta cualquier contenido que sobresalga */
+  margin-bottom: 16px; /* Separación con siguiente elemento */
+}
+
+.media iframe,
+.media video {
+  position: absolute; /* Posiciona contenido dentro del contenedor */
+  inset: 0;           /* top/right/bottom/left = 0 */
+  width: 100%;        /* Ocupa todo el ancho del contenedor */
+  height: 100%;       /* Ocupa toda la altura determinada por padding */
+  border: 0;          /* Sin borde */
+}
+
+/* ===================================================
+   4) Contenedor moderno usando aspect-ratio
+   =================================================== */
+.ratio {
+  aspect-ratio: 16 / 9; /* Mantiene la proporción 16:9 automáticamente */
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+}
