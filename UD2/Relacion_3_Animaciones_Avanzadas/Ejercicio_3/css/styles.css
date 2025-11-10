@@ -1,0 +1,55 @@
+/*
+RELACIÓN 3 · EJERCICIO 3 · animation-play-state
+Crea una animación que haga girar una figura continuamente 360 grados en 5s.
+La animación debe pausarse cuando el usuario pase el cursor sobre la figura y reanudarse al quitar el cursor.
+*/
+
+:root {
+  --lado: 100px;
+}
+
+.cuadrado {
+  width: var(--lado);
+  height: var(--lado);
+  background: #1e90ff;
+  display: block;
+}
+
+.circulo {
+  width: var(--lado);
+  height: var(--lado);
+  border-radius: 50%;
+  background: #1e90ff;
+  display: block;
+}
+
+.rombo {
+  width: var(--lado);
+  height: var(--lado);
+  background: #1e90ff;
+  transform: rotate(45deg);
+  transform-origin: center;
+  display: block;
+
+  animation: girar 5s linear infinite;
+  animation-play-state: running;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(405deg);
+  }
+}
+
+.rombo.rotando:hover {
+  animation-play-state: paused;
+}
+
+.lienzo {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(120px, 1fr));
+  gap: 20px;
+}
