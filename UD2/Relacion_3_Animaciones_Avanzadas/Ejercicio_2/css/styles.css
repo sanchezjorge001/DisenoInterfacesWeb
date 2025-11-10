@@ -31,14 +31,17 @@ Cada círculo debe tardar 3s en completar la animación y repetirla indefinidame
 
 .dir-normal {
   animation-direction: normal;
+  background-color: red;
 }
 
 .dir-reverse {
   animation-direction: reverse;
+  background: green;
 }
 
 .dir-alternate {
   animation-direction: alternate;
+  background: yellow;
 }
 
 .dir-alternate-reverse {
