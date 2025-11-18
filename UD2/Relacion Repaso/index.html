@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>NovaLab - Museo de Ciencia Interactiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header__logo">
+      <span class="logo__icon">⚛️</span>
+      <span class="logo__text anim-logo">NovaLab</span>
+    </div>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="#inicio" class="nav__link">Inicio</a></li>
+        <li><a href="#exposiciones" class="nav__link">Exposiciones</a></li>
+        <li><a href="#experiencias" class="nav__link">Experiencias</a></li>
+        <li><a href="#visita" class="nav__link">Visita y Entradas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- PORTADA / HERO -->
+    <section id="inicio" class="section section--hero">
+      <div class="hero__content js-entrada-principal">
+        <p class="hero__label">Museo de Ciencia Interactiva</p>
+        <h1 class="hero__title">Explora el futuro de la ciencia en NovaLab</h1>
+        <p class="hero__subtitle">
+          Exposiciones, experiencias inmersivas y actividades interactivas para todas las edades.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#exposiciones" class="btn btn--primary btn-explorar">
+            Explorar exposiciones
+          </a>
+          <a href="#experiencias" class="btn btn--secondary btn-experiencias">
+            Ver experiencias
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__image-area">
+        <div class="hero__orbit">
+          <div class="hero__planet"></div>
+        </div>
+        <div class="hero__loader loader-cientifico">
+          <!-- Aquí irá el loader animado en el examen -->
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPOSICIONES -->
+    <section id="exposiciones" class="section section--light">
+      <div class="section__header">
+        <h2 class="section__title">Exposiciones destacadas</h2>
+        <p class="section__subtitle">
+          Descubre nuestras áreas temáticas permanentes y temporales.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card-expo js-scroll-item">
+          <h3 class="card-expo__title">Viaje al Espacio</h3>
+          <p class="card-expo__text">
+            Simuladores, maquetas y proyecciones inmersivas para entender el universo.
+          </p>
+          <span class="card-expo__tag">Astrofísica</span>
+        </article>
+
+        <article class="card-expo js-scroll-item">
+          <h3 class="card-expo__title">Energía y Sostenibilidad</h3>
+          <p class="card-expo__text">
+            Paneles interactivos para experimentar con energías renovables y eficiencia energética.
+          </p>
+          <span class="card-expo__tag">Medio ambiente</span>
+        </article>
+
+        <article class="card-expo js-scroll-item">
+          <h3 class="card-expo__title">Tecnología del Futuro</h3>
+          <p class="card-expo__text">
+            Robots, IA y prototipos que muestran cómo será el mundo de mañana.
+          </p>
+          <span class="card-expo__tag">Innovación</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIAS INTERACTIVAS -->
+    <section id="experiencias" class="section section--dark">
+      <div class="section__header section__header--center">
+        <h2 class="section__title">Experiencias interactivas</h2>
+        <p class="section__subtitle">
+          Participa en actividades que combinan juego, ciencia y tecnología.
+        </p>
+      </div>
+
+      <div class="experiencias-layout">
+        <div class="experiencias__lista">
+          <article class="exp-card js-scroll-item">
+            <h3 class="exp-card__title">Realidad Virtual Espacial</h3>
+            <p class="exp-card__text">
+              Recorre la Estación Espacial Internacional y la superficie lunar desde una sala inmersiva.
+            </p>
+          </article>
+
+          <article class="exp-card js-scroll-item">
+            <h3 class="exp-card__title">Laboratorio de Experimentos</h3>
+            <p class="exp-card__text">
+              Realiza pequeños experimentos guiados para entender conceptos de física y química.
+            </p>
+          </article>
+
+          <article class="exp-card js-scroll-item">
+            <h3 class="exp-card__title">Zona Maker</h3>
+            <p class="exp-card__text">
+              Diseña, construye y prueba tus propias creaciones tecnológicas.
+            </p>
+          </article>
+        </div>
+
+        <aside class="experiencias__extra">
+          <div class="banner-especial">
+            <p class="banner-especial__kicker">Evento especial</p>
+            <h3 class="banner-especial__title">
+              Noche de Observación de Estrellas
+            </h3>
+            <p class="banner-especial__text">
+              Una experiencia guiada por astrónomos, con telescopios y actividades para toda la familia.
+            </p>
+            <button class="btn btn--primary btn-respiracion">
+              Reservar plaza
+            </button>
+          </div>
+
+          <div class="bloque-desplegable">
+            <button class="bloque-desplegable__toggle">
+              Información para centros escolares
+            </button>
+            <div class="bloque-desplegable__contenido">
+              <p>
+                Programas adaptados a diferentes niveles educativos, con actividades guiadas y dossier para el aula.
+              </p>
+              <ul>
+                <li>Visitas guiadas temáticas.</li>
+                <li>Talleres prácticos en laboratorio.</li>
+                <li>Recursos didácticos descargables.</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- VISITA Y ENTRADAS -->
+    <section id="visita" class="section section--light">
+      <div class="section__header section__header--center">
+        <h2 class="section__title">Planifica tu visita</h2>
+        <p class="section__subtitle">
+          Horarios, ubicación y tipos de entrada disponibles.
+        </p>
+      </div>
+
+      <div class="visita-layout">
+        <div class="visita__info">
+          <h3 class="visita__title">Horarios</h3>
+          <p>
+            De martes a domingo, de 10:00 a 20:00. Lunes cerrado por mantenimiento.
+          </p>
+
+          <h3 class="visita__title">Ubicación</h3>
+          <p>
+            Avenida de la Ciencia, 42. Ciudad del Futuro.
+          </p>
+        </div>
+
+        <div class="visita__entradas">
+          <div class="entradas-card">
+            <h3 class="entradas-card__title">Entradas y reservas</h3>
+            <p>
+              Compra de entradas individuales, familiares y para grupos con descuento.
+            </p>
+            <button class="btn btn--primary btn-entradas">
+              Comprar entradas
+            </button>
+          </div>
+
+          <div class="entradas-extra js-scroll-item">
+            <h4 class="entradas-extra__title">Tarifas especiales</h4>
+            <p>
+              Consulta precios reducidos para estudiantes, mayores de 65 años y personas desempleadas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__text">
+      © NovaLab – Museo de Ciencia Interactiva · Todos los derechos reservados
+    </p>
+  </footer>
+
+  <!-- JS opcional  -->
+  <script src="script.js"></script>
+</body>
+</html>
