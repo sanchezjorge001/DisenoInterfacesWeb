@@ -1,16 +1,480 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diseño Responsive con Flexbox</title>
-  <link rel="stylesheet" href="css/estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Sánchez | Full Stack & Automation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+    <style>
+        /* --- CONFIGURACIÓN DE COLORES (MIDNIGHT AURORA) --- */
+        :root {
+            --bg-dark: #050505;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            /* Gradiente Principal (Violeta/Azul) */
+            --gradient-text: linear-gradient(to right, #c084fc, #6366f1, #3b82f6);
+            --gradient-border: linear-gradient(45deg, #c084fc, #6366f1);
+            --accent: #8b5cf6;
+            /* Color n8n (Naranja) para la sección de automatización */
+            --n8n-color: #ff6e5c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            /* Fondo sutil radial arriba */
+            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #050505 50%);
+        }
+
+        /* --- PARTÍCULAS FONDO --- */
+        #particles-js {
+            position: absolute; width: 100%; height: 100vh;
+            top: 0; left: 0; z-index: 1;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+        /* --- NAVEGACIÓN FLOTANTE --- */
+        nav {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1000px; z-index: 100;
+            background: rgba(15, 15, 20, 0.6); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px; padding: 15px 40px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--text-main); letter-spacing: -1px; }
+        .logo span { color: #c084fc; }
+        .nav-links a { margin-left: 30px; color: var(--text-muted); font-weight: 600; transition: 0.3s; text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover { color: white; text-shadow: 0 0 10px rgba(192, 132, 252, 0.5); }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 100vh; display: flex; align-items: center; position: relative;
+            padding-top: 80px; 
+        }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 50px; }
+        
+        .hero-text h2 { 
+            font-size: 1.1rem; margin-bottom: 20px; font-family: 'JetBrains Mono', monospace;
+            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 700; letter-spacing: 1px;
+        }
+        .hero-text h1 { font-size: 4.5rem; line-height: 1.1; font-weight: 900; margin-bottom: 25px; letter-spacing: -2px; }
+        
+        .typewriter { border-right: 4px solid #c084fc; padding-right: 5px; animation: blink 0.7s infinite; }
+        
+        /* Botones */
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px; border-radius: 12px;
+            font-weight: 700; text-decoration: none; transition: 0.3s; margin-top: 30px; font-size: 1rem;
+        }
+        .btn-primary { 
+            background: var(--text-main); color: black; 
+            box-shadow: 0 0 20px rgba(255,255,255,0.2); border: none; 
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(255,255,255,0.4); }
+        
+        .btn-outline { 
+            background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); margin-left: 15px; 
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        /* Foto de Perfil con Borde Animado */
+        .hero-img-wrapper {
+            position: relative; width: 380px; height: 380px; margin: 0 auto;
+            padding: 5px; background: var(--gradient-border); border-radius: 50%;
+            animation: spin-border 10s linear infinite;
+        }
+        .hero-img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+            border: 5px solid var(--bg-dark); position: relative; z-index: 2;
+            animation: spin-border-reverse 10s linear infinite; 
+        }
+        .hero-img-wrapper::before {
+            content: ''; position: absolute; top: 50px; left: 50px; right: 50px; bottom: 50px;
+            background: var(--gradient-border); filter: blur(60px); opacity: 0.6; z-index: -1;
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 120px 0; }
+        .section-title { text-align: center; font-size: 3rem; margin-bottom: 60px; font-weight: 800; }
+        .section-title span { 
+            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* --- SKILLS --- */
+        .skills-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .skill-pill {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 24px; border-radius: 100px; display: flex; align-items: center; gap: 12px;
+            transition: 0.4s; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+        }
+        .skill-pill:hover { 
+            background: rgba(255,255,255,0.08); border-color: #c084fc; 
+            box-shadow: 0 0 20px rgba(192, 132, 252, 0.2); transform: translateY(-5px);
+        }
+
+        /* --- AUTOMATION / N8N STYLES (NUEVO) --- */
+        .automation-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
+        }
+        .workflow-card {
+            background: #0f0f12; border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px; overflow: hidden; transition: 0.4s;
+            display: flex; flex-direction: column;
+        }
+        .workflow-card:hover {
+            border-color: var(--n8n-color);
+            box-shadow: 0 0 30px rgba(255, 110, 92, 0.15);
+            transform: translateY(-5px);
+        }
+        .workflow-visual {
+            height: 160px; background-color: #16161a;
+            background-image: radial-gradient(#2a2a30 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nodes-container { display: flex; align-items: center; gap: 40px; position: relative; }
+        .connection-line {
+            position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
+            background: #333; z-index: 0; transform: translateY(-50%);
+        }
+        .data-packet {
+            position: absolute; top: 50%; left: 0; width: 6px; height: 6px;
+            background: var(--n8n-color); border-radius: 50%; box-shadow: 0 0 10px var(--n8n-color);
+            transform: translateY(-50%); animation: flow-data 2s infinite linear; opacity: 0;
+        }
+        .node-icon {
+            width: 50px; height: 50px; background: #222; border: 1px solid #444;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: #fff; z-index: 1; position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s;
+        }
+        .node-icon.n8n-trigger { border-color: var(--n8n-color); color: var(--n8n-color); box-shadow: 0 0 15px rgba(255, 110, 92, 0.2); }
+        .workflow-card:hover .node-icon { transform: scale(1.1); }
+        .workflow-info { padding: 25px; }
+        .workflow-info h3 { font-size: 1.3rem; margin-bottom: 10px; color: white; }
+        .workflow-info p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        .workflow-tags { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .w-tag { font-size: 0.75rem; background: rgba(255, 110, 92, 0.1); color: var(--n8n-color); padding: 4px 10px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- PROYECTOS --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .project-card {
+            background: #0a0a0a; border-radius: 24px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transform-style: preserve-3d; transform: perspective(1000px);
+            transition: border-color 0.3s;
+        }
+        .project-card:hover { border-color: rgba(99, 102, 241, 0.5); }
+        .project-img-container { height: 220px; overflow: hidden; position: relative; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; opacity: 0.8; }
+        .project-card:hover .project-img { transform: scale(1.05); opacity: 1; }
+        .project-content { padding: 30px; }
+        .tags { margin-bottom: 20px; display: flex; gap: 8px; }
+        .tag { font-size: 0.7rem; background: rgba(99, 102, 241, 0.15); color: #c084fc; padding: 5px 12px; border-radius: 6px; font-weight: 700; }
+        .project-content h3 { margin-bottom: 10px; font-size: 1.5rem; font-weight: 700; }
+        .project-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 25px; }
+        .link-btn { color: white; font-size: 1.3rem; transition: 0.3s; opacity: 0.7; margin-right: 15px; }
+        .link-btn:hover { color: #c084fc; opacity: 1; transform: scale(1.2); }
+
+        /* --- TIMELINE --- */
+        .timeline-item {
+            border-left: 2px solid rgba(255,255,255,0.1); padding-left: 40px; margin-left: 20px; 
+            position: relative; padding-bottom: 60px;
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -6px; top: 5px; width: 10px; height: 10px;
+            background: #6366f1; border-radius: 50%; box-shadow: 0 0 15px #6366f1; transition: 0.3s;
+        }
+        .timeline-item:hover::before { transform: scale(1.5); background: #c084fc; box-shadow: 0 0 20px #c084fc; }
+        .date { font-family: 'JetBrains Mono', monospace; color: #c084fc; font-size: 0.85rem; margin-bottom: 8px; display: block; font-weight: 700; }
+
+        /* --- FOOTER --- */
+        footer { 
+            text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); 
+            background: linear-gradient(to top, #0f0518, transparent);
+        }
+
+        /* ANIMACIONES */
+        @keyframes blink { 50% { border-color: transparent; } }
+        @keyframes spin-border { 100% { transform: rotate(360deg); } }
+        @keyframes spin-border-reverse { 100% { transform: rotate(-360deg); } }
+        @keyframes flow-data { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav { width: 95%; padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .hero-img-wrapper { width: 280px; height: 280px; margin-top: 20px; }
+            .hero-text h1 { font-size: 3rem; }
+            .btn { width: 100%; justify-content: center; margin-top: 15px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="col">Columna 1</div>
-    <div class="col">Columna 2</div>
-    <div class="col">Columna 3</div>
-  </div>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <div class="nav-flex">
+            <div class="logo">Jorge<span>.Dev</span></div>
+            <div class="nav-links">
+                <a href="#about">Trayectoria</a>
+                <a href="#automations" style="color: var(--n8n-color);">n8n Hub</a>
+                <a href="#projects">Proyectos</a>
+                <a href="mailto:jorge2004sm@gmail.com" style="background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 20px;">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h2>// DESARROLLADOR FULL STACK</h2>
+                <h1>Jorge Sánchez<span style="color:#c084fc">.</span></h1>
+                <h2 style="color: var(--text-muted); font-size: 1.5rem; margin-top: 10px;">
+                    <span id="typewriter-text" style="color: white;"></span><span class="typewriter"></span>
+                </h2>
+                <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; max-width: 500px;">
+                    Perfil híbrido <strong>DAM + DAW</strong>. Especialista en orquestar automatizaciones con <strong>n8n</strong> y desarrollar arquitecturas robustas en Java Spring Boot.
+                </p>
+                <div>
+                    <a href="#automations" class="btn btn-primary">Ver Automatizaciones</a>
+                    <a href="https://github.com" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="hero-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jorge Sanchez" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title"><span>Arsenal Técnico</span></h2>
+            <div class="skills-wrapper">
+                <div class="skill-pill" style="border-color: var(--n8n-color);"><i class="fas fa-bolt" style="color: var(--n8n-color);"></i> n8n Workflows</div>
+                <div class="skill-pill"><i class="fab fa-java" style="color: #f89820;"></i> Java Spring Boot</div>
+                <div class="skill-pill"><i class="fab fa-laravel" style="color: #ff2d20;"></i> PHP Laravel</div>
+                <div class="skill-pill"><i class="fab fa-react" style="color: #61dafb;"></i> React JS</div>
+                <div class="skill-pill"><i class="fas fa-database" style="color: #00d4ff;"></i> MySQL</div>
+                <div class="skill-pill"><i class="fab fa-docker" style="color: #0db7ed;"></i> Docker</div>
+                <div class="skill-pill"><i class="fab fa-android" style="color: #3ddc84;"></i> Android</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="automations">
+        <div class="container">
+            <h2 class="section-title"><span style="background: linear-gradient(to right, #ff6e5c, #ffa07a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Automation Hub</span></h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Diseño e implementación de flujos ETL y automatización de procesos de negocio complejos utilizando <strong style="color: var(--n8n-color);">n8n</strong>.
+            </p>
+            
+            <div class="automation-grid">
+                <div class="workflow-card">
+                    <div class="workflow-visual">
+                        <div class="nodes-container">
+                            <div class="connection-line"></div> 
+                            <div class="data-packet"></div> 
+                            <div class="node-icon"><i class="fab fa-wpforms"></i></div>
+                            <div class="node-icon n8n-trigger"><i class="fas fa-bolt"></i></div>
+                            <div class="node-icon"><i class="fab fa-slack"></i></div>
+                        </div>
+                    </div>
+                    <div class="workflow-info">
+                        <h3>Lead Enrichment & Alert</h3>
+                        <p>Webhook que recibe leads, enriquece datos con APIs externas y notifica al equipo de ventas en Slack al instante.</p>
+                        <div class="workflow-tags"><span class="w-tag">WEBHOOK</span><span class="w-tag">JSON</span></div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-visual">
+                        <div class="nodes-container">
+                            <div class="connection-line"></div>
+                            <div class="data-packet" style="animation-delay: 0.5s;"></div>
+                            <div class="node-icon"><i class="fab fa-telegram"></i></div>
+                            <div class="node-icon n8n-trigger"><i class="fas fa-robot"></i></div>
+                            <div class="node-icon"><i class="fas fa-database"></i></div>
+                        </div>
+                    </div>
+                    <div class="workflow-info">
+                        <h3>AI Support Bot</h3>
+                        <p>Bot conectado a OpenAI (GPT-4). Analiza consultas de soporte, clasifica urgencia y guarda tickets en base de datos.</p>
+                        <div class="workflow-tags"><span class="w-tag">OPENAI</span><span class="w-tag">SQL</span></div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-visual">
+                        <div class="nodes-container">
+                            <div class="connection-line"></div>
+                            <div class="data-packet" style="animation-delay: 1s;"></div>
+                            <div class="node-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="node-icon n8n-trigger"><i class="fas fa-sync-alt"></i></div>
+                            <div class="node-icon"><i class="fas fa-file-invoice"></i></div>
+                        </div>
+                    </div>
+                    <div class="workflow-info">
+                        <h3>E-commerce Sync</h3>
+                        <p>Sincronización bidireccional WooCommerce - ERP. Generación automática de facturas y actualización de stock.</p>
+                        <div class="workflow-tags"><span class="w-tag">CRON</span><span class="w-tag">WOOCOMMERCE</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title"><span>Desarrollo Software</span></h2>
+            <div class="projects-grid">
+                
+                <div class="project-card" data-tilt>
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <div class="tags"><span class="tag">SPRING BOOT</span><span class="tag">SECURITY</span></div>
+                        <h3>API Core Enterprise</h3>
+                        <p>Backend de alta disponibilidad con autenticación JWT. Arquitectura hexagonal para máxima escalabilidad.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-btn"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-tilt>
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <div class="tags"><span class="tag">ANDROID</span><span class="tag">KOTLIN</span></div>
+                        <h3>Inventory Scanner</h3>
+                        <p>App nativa que usa la cámara para escanear QR y sincronizar stock con servidor central en tiempo real.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-btn"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-tilt>
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <div class="tags"><span class="tag">LARAVEL</span><span class="tag">VUE</span></div>
+                        <h3>SaaS Dashboard</h3>
+                        <p>Panel administrativo integral para gestión de usuarios y reportes. Generación de PDFs.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-btn"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title"><span>Mi Trayectoria</span></h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="timeline-item">
+                    <span class="date">2025 - ACTUALIDAD</span>
+                    <h3>Grado Superior Desarrollo Web (DAW)</h3>
+                    <p style="color: var(--text-muted);">Escuela STEM Granada | Frameworks Modernos & APIs.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="date">MAR 2025 - JUN 2025</span>
+                    <h3>Técnico de Sistemas (FCT)</h3>
+                    <p style="color: var(--text-muted);">Invercopa 2050 S.L | Gestión de inventario y soporte técnico.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="date">2023 - 2025</span>
+                    <h3>Grado Superior Desarrollo Multiplataforma (DAM)</h3>
+                    <p style="color: var(--text-muted);">Medac | Java POO y Desarrollo Móvil Nativo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p style="font-size: 1.2rem; margin-bottom: 10px; color: white;">¿Tienes un proceso para automatizar?</p>
+        <a href="mailto:jorge2004sm@gmail.com" style="color: var(--accent); text-decoration: none; font-size: 1.1rem;">jorge2004sm@gmail.com</a>
+        <p style="opacity: 0.5; margin-top: 30px; font-size: 0.8rem;">&copy; 2025 Jorge Sánchez. Creado desde cero.</p>
+    </footer>
+
+    <script>
+        // 1. PARTÍCULAS (VIOLETA)
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#8b5cf6" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#8b5cf6", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" } },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.6 } } }
+            },
+            "retina_detect": true
+        });
+
+        // 2. EFECTO MÁQUINA DE ESCRIBIR (Incluye n8n)
+        const textElement = document.getElementById('typewriter-text');
+        const phrases = ["Experto en Automatización.", "Orquesto Flujos n8n.", "Desarrollador Java.", "Perfil DAM + DAW."];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // 3. TILT EN TARJETAS
+        VanillaTilt.init(document.querySelectorAll(".project-card, .workflow-card"), {
+            max: 10, speed: 400, glare: true, "max-glare": 0.1,
+        });
+    </script>
 </body>
 </html>

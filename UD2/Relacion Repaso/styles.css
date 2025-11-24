@@ -17,16 +17,6 @@ body {
   background-color: #050816;
 }
 
-body {
-  min-height: 100vh;
-}
-
-body:not(.js-enabled) .bloque-desplegable__contenido {
-  max-height: none;
-  opacity: 1;
-  transform: none;
-}
-
 /* LAYOUT GENERAL */
 
 .header {
@@ -59,34 +49,6 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   color: #e5e7eb;
 }
 
-/* Animación del logo NovaLab */
-.anim-logo {
-  animation: logo-pulso 2.8s ease-in-out infinite;
-  color: #60a5fa;
-  text-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
-}
-
-@keyframes logo-pulso {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-    letter-spacing: 0.04em;
-    color: #3b82f6;
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.15) skewX(-1deg);
-    letter-spacing: 0.14em;
-    color: #a855f7;
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    letter-spacing: 0.04em;
-    color: #38bdf8;
-  }
-}
-
 .nav__list {
   list-style: none;
   display: flex;
@@ -99,34 +61,6 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   text-decoration: none;
   color: #e5e7eb;
   font-size: 0.95rem;
-  position: relative;
-  padding-bottom: 0.2rem;
-  transition: color 0.3s ease;
-}
-
-.nav__link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #38bdf8, #a855f7);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.35s ease;
-  opacity: 0.9;
-}
-
-.nav__link:hover,
-.nav__link:focus-visible {
-  color: #bfdbfe;
-}
-
-.nav__link:hover::after,
-.nav__link:focus-visible::after {
-  transform: scaleX(1);
-  transform-origin: left;
 }
 
 /* SECCIONES GENERALES */
@@ -176,47 +110,10 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   color: #9ca3af;
 }
 
-/* Animaciones de scroll */
-
-.js-scroll-item {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-  transition-delay: var(--scroll-delay, 0s);
-}
-
-.js-scroll-item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* HERO */
 
 .hero__content {
   max-width: 640px;
-}
-
-.is-ready .js-entrada-principal {
-  animation: hero-entrada 1.2s ease-out forwards;
-}
-
-@keyframes hero-entrada {
-  0% {
-    opacity: 0;
-    transform: translateY(32px) scale(0.92);
-    filter: blur(12px);
-  }
-  45% {
-    opacity: 1;
-    transform: translateY(-8px) scale(1.02);
-    filter: blur(0);
-  }
-  70% {
-    transform: translateY(4px) scale(0.995);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
 }
 
 .hero__label {
@@ -250,7 +147,7 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   gap: 2rem;
 }
 
-/* ORBITA DECORATIVA (ESTÁTICA) */
+/* ORBITA DECORATIVA */
 
 .hero__orbit {
   width: 220px;
@@ -269,7 +166,7 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   background: linear-gradient(135deg, #22c55e, #3b82f6);
 }
 
-/* ZONA DEL LOADER (ESTÁTICO) */
+/* ZONA DEL LOADER */
 
 .hero__loader {
   width: 64px;
@@ -277,41 +174,6 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   border-radius: 999px;
   border: 4px solid #1f2937;
   border-top-color: #3b82f6;
-  position: relative;
-  animation: loader-spin 1.1s linear infinite;
-}
-
-.hero__loader::after {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  border-left-color: #67e8f9;
-  border-right-color: #c084fc;
-  animation: loader-pulse 0.9s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(103, 232, 249, 0.4));
-}
-
-@keyframes loader-spin {
-  from {
-    transform: rotate(0turn);
-  }
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-@keyframes loader-pulse {
-  0%,
-  100% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
 }
 
 /* BOTONES */
@@ -327,96 +189,17 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   cursor: pointer;
   text-decoration: none;
   font-weight: 500;
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.3s ease,
-    background-position 0.4s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.btn:focus-visible {
-  outline: 2px solid rgba(191, 219, 254, 0.8);
-  outline-offset: 3px;
 }
 
 .btn--primary {
   background: linear-gradient(135deg, #2563eb, #4f46e5);
   color: #f9fafb;
-  background-size: 200% 200%;
 }
 
 .btn--secondary {
   background-color: transparent;
   color: #e5e7eb;
   border: 1px solid rgba(148, 163, 184, 0.8);
-}
-
-.btn-explorar {
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
-}
-
-.btn-explorar:hover {
-  background-position: 100% 0;
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 35px rgba(99, 102, 241, 0.35);
-}
-
-.btn-experiencias {
-  color: #c7d2fe;
-  padding-inline: 1.4rem;
-}
-
-.btn-experiencias::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(14, 165, 233, 0.9), rgba(59, 130, 246, 0.7));
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-  z-index: -1;
-}
-
-.btn-experiencias:hover::after,
-.btn-experiencias:focus-visible::after {
-  transform: translateY(0);
-}
-
-.btn-experiencias:hover,
-.btn-experiencias:focus-visible {
-  color: #041322;
-  border-color: transparent;
-}
-
-.btn-entradas {
-  background: linear-gradient(135deg, #0ea5e9, #2563eb);
-  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.25);
-}
-
-.btn-entradas:hover {
-  transform: translateY(-5px) scale(1.04);
-  box-shadow: 0 20px 35px rgba(14, 165, 233, 0.35);
-}
-
-.btn-respiracion {
-  animation: btn-breath 3.5s ease-in-out infinite;
-  box-shadow: 0 0 0 rgba(59, 130, 246, 0.45);
-}
-
-.btn-respiracion:hover {
-  animation-play-state: paused;
-  transform: scale(1.03);
-}
-
-@keyframes btn-breath {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.45);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 35px 10px rgba(14, 165, 233, 0.25);
-    transform: scale(1.05);
-  }
 }
 
 /* GRID EXPOSICIONES */
@@ -433,39 +216,6 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   border-radius: 1rem;
   padding: 1.5rem;
   border: 1px solid rgba(148, 163, 184, 0.6);
-  transition: transform 0.6s ease, box-shadow 0.6s ease, background 0.6s ease,
-    filter 0.6s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.cards-grid .card-expo:nth-child(1):hover {
-  transform: translateY(-12px);
-  box-shadow: 0 25px 40px rgba(59, 130, 246, 0.25);
-}
-
-.cards-grid .card-expo:nth-child(2)::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(59, 130, 246, 0.25), transparent 65%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.cards-grid .card-expo:nth-child(2):hover {
-  transform: rotateX(4deg) translateY(-6px);
-  background: linear-gradient(135deg, rgba(8, 47, 73, 0.9), rgba(15, 23, 42, 0.95));
-}
-
-.cards-grid .card-expo:nth-child(2):hover::after {
-  opacity: 1;
-}
-
-.cards-grid .card-expo:nth-child(3):hover {
-  transform: scale(1.05) rotate(-1deg);
-  filter: saturate(1.4);
-  box-shadow: 0 20px 45px rgba(34, 197, 94, 0.3);
 }
 
 .card-expo__title {
@@ -508,13 +258,6 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   border-radius: 0.8rem;
   padding: 1.2rem;
   border: 1px solid rgba(75, 85, 99, 0.8);
-  transition: transform 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-.exp-card:hover {
-  transform: translateX(6px);
-  border-color: rgba(147, 197, 253, 0.7);
-  box-shadow: -8px 8px 25px rgba(15, 23, 42, 0.5);
 }
 
 .exp-card__title {
@@ -561,19 +304,13 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   font-size: 0.95rem;
 }
 
-/* BLOQUE DESPLEGABLE (ESTADO INICIAL ABIERTO PARA QUE SE VEA EL CONTENIDO) */
+/* BLOQUE DESPLEGABLE */
 
 .bloque-desplegable {
   background: rgba(15, 23, 42, 0.95);
   border-radius: 1rem;
   border: 1px solid rgba(75, 85, 99, 0.8);
   padding: 1rem;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.bloque-desplegable.is-open {
-  border-color: rgba(129, 140, 248, 0.9);
-  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.6);
 }
 
 .bloque-desplegable__toggle {
@@ -586,45 +323,26 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   padding: 0;
   margin: 0 0 0.75rem;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1rem;
-}
-
-.bloque-desplegable__toggle::after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  border-right: 2px solid #e5e7eb;
-  border-bottom: 2px solid #e5e7eb;
-  transform: rotate(45deg);
-  transition: transform 0.4s ease;
-}
-
-.bloque-desplegable.is-open .bloque-desplegable__toggle::after {
-  transform: rotate(225deg);
 }
 
 .bloque-desplegable__contenido {
   font-size: 0.9rem;
   color: #9ca3af;
   max-height: 0;
-  overflow: hidden;
   opacity: 0;
-  transform: translateY(-8px);
-  transition: max-height 0.55s ease, opacity 0.4s ease, transform 0.4s ease;
-}
-
-.bloque-desplegable.is-open .bloque-desplegable__contenido {
-  max-height: 420px;
-  opacity: 1;
-  transform: translateY(0);
+  overflow: hidden;
+  transition: max-height 0.7s ease, opacity 0.5s ease;
 }
 
 .bloque-desplegable__contenido ul {
   padding-left: 1.1rem;
   margin: 0.4rem 0 0;
+}
+
+.bloque-desplegable:hover .bloque-desplegable__contenido,
+.bloque-desplegable:focus-within .bloque-desplegable__contenido {
+  max-height: 500px;
+  opacity: 1;
 }
 
 /* VISITA Y ENTRADAS */
@@ -736,13 +454,158 @@ body:not(.js-enabled) .bloque-desplegable__contenido {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* ============================= */
+/*        SOLUCIÓN           */
+/* ============================= */
+
+/* Bloque desplegable os lo he resuelto en lineas 328 a 346 */
+
+/* Animación del logo */
+.anim-logo {
+  display: inline-block;
+  animation: logoPulse 3s ease-in-out infinite alternate;
 }
+
+@keyframes logoPulse {
+  0% { transform: scale(1); opacity: 1; letter-spacing: 0.05em; }
+  50% { transform: scale(1.08); opacity: 0.85; letter-spacing: 0.12em; }
+  100% { transform: scale(1); opacity: 1; letter-spacing: 0.05em; }
+}
+
+/* Transiciones en botones */
+.btn {
+  transition: all 0.35s ease;
+}
+
+.btn--primary:hover {
+  transform: translateY(-4px) scale(1.06);
+  filter: brightness(1.2);
+}
+
+.btn--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+/* Botón con efecto "respiración" */
+.btn-respiracion {
+  animation: breathing 4s ease-in-out infinite alternate;
+}
+
+@keyframes breathing {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  50% { transform: scale(1.08); box-shadow: 0 0 25px 0 rgba(59, 130, 246, 0.7); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+}
+
+/* Aparición del bloque principal del hero */
+.js-entrada-principal {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: entradaHero 1.8s ease forwards;
+}
+
+@keyframes entradaHero {
+  0% { opacity: 0; transform: translateY(40px); }
+  40% { opacity: 0.5; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Loader animado */
+.loader-cientifico {
+  animation: loaderSpin 1s linear infinite;
+}
+
+.loader-cientifico:hover {
+  animation-play-state: paused;
+}
+
+@keyframes loaderSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Menú de navegación animado */
+.nav__link {
+  position: relative;      /* Necesario para que ::after se posicione respecto al enlace */
+  transition: color 0.3s ease; /* Suaviza el cambio de color del texto */
+}
+
+/* ----------------------------------------------------------
+   PSEUDOELEMENTO ::after
+   El selector ::after sirve para insertar contenido virtual 
+   justo después del contenido real de un elemento, 
+   sin necesidad de escribir nada en el HTML. 
+
+   Crea una línea decorativa animada debajo del enlace
+   ---------------------------------------------------------- */
+
+.nav__link::after {
+  content: "";             /* Genera un elemento virtual vacío */
+  position: absolute;      /* Permite colocarlo debajo del texto */
+  left: 0;                 /* La línea comienza en el lado izquierdo del enlace */
+  bottom: -4px;            /* Sitúa la línea unos píxeles por debajo del texto */
+  width: 0%;               /* Anchura inicial: 0 → no se ve */
+  height: 2px;             /* Grosor de la línea */
+  background: #60a5fa;     /* Color del subrayado animado */
+  transition: width 0.35s ease; /* La anchura crecerá suavemente al hacer hover */
+}
+
+/* ----------------------------------------------------------
+   EFECTO AL PASAR EL RATÓN
+   La línea se dibuja aumentando su anchura hasta el 100%
+   ---------------------------------------------------------- */
+
+.nav__link:hover {
+  color: #93c5fd;          /* Cambia ligeramente el color del texto */
+}
+
+.nav__link:hover::after {
+  width: 100%;             /* La línea se expande visualmente de izquierda a derecha */
+}
+
+/* Aparición por scroll (JS + CSS) */
+.js-scroll-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+}
+
+.js-scroll-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Escalonado en la galería de exposiciones */
+.cards-grid .js-scroll-item:nth-child(1) {
+  transition-delay: 0.15s;
+}
+
+.cards-grid .js-scroll-item:nth-child(2) {
+  transition-delay: 0.35s;
+}
+
+.cards-grid .js-scroll-item:nth-child(3) {
+  transition-delay: 0.55s;
+}
+
+/* Transiciones extra en tarjetas de exposiciones */
+.card-expo {
+  transform-origin: center;
+}
+
+.card-expo:hover {
+  transform: translateY(-6px) scale(1.02);
+  background-color: rgba(30, 41, 59, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Aparición más suave en otras tarjetas scroll */
+.exp-card.js-scroll-item {
+  transition-duration: 0.8s;
+}
+
+.entradas-extra.js-scroll-item {
+  transition-duration: 0.9s;
+}
+

@@ -1,16 +1,228 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diseño Responsive con Flexbox</title>
-  <link rel="stylesheet" href="css/estilos.css">
+    <meta charset="UTF-8">
+    <title>Sistema Solar 3D (Sin Imágenes Externas)</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; font-family: sans-serif; }
+        canvas { display: block; }
+        #ui {
+            position: absolute; top: 10px; left: 10px; color: white;
+            background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;
+            pointer-events: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="col">Columna 1</div>
-    <div class="col">Columna 2</div>
-    <div class="col">Columna 3</div>
-  </div>
+    <div id="ui">
+        <b>Sistema Solar Procedural</b><br>
+        Click + Arrastrar: Mover Cámara<br>
+        Rueda: Zoom<br>
+        (Generando texturas automáticamente...)
+    </div>
+
+    <script>
+        // --- 1. CONFIGURACIÓN BÁSICA ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x050505);
+
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 4000);
+        camera.position.set(0, 300, 500); // Cámara elevada
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // --- 2. GENERADOR DE TEXTURAS (DIBUJA LOS PLANETAS CON CÓDIGO) ---
+        function createPlanetTexture(baseColor, detailColor, complexity) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            // Fondo base
+            ctx.fillStyle = baseColor;
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Añadir detalles/nubes aleatorias
+            for (let i = 0; i < complexity; i++) {
+                ctx.fillStyle = detailColor;
+                ctx.globalAlpha = Math.random() * 0.4;
+                const x = Math.random() * 512;
+                const y = Math.random() * 512;
+                const w = Math.random() * 100 + 50;
+                const h = Math.random() * 50 + 20;
+                ctx.beginPath();
+                ctx.ellipse(x, y, w, h, 0, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Efecto de bandas (para Júpiter/Saturno)
+            if (complexity > 100) {
+                ctx.globalAlpha = 0.1;
+                ctx.fillStyle = "#000";
+                for(let i=0; i<512; i+=40) {
+                    ctx.fillRect(0, i, 512, 20);
+                }
+            }
+
+            const texture = new THREE.CanvasTexture(canvas);
+            return texture;
+        }
+
+        function createSunTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            const grd = ctx.createRadialGradient(256, 256, 50, 256, 256, 256);
+            grd.addColorStop(0, "white");
+            grd.addColorStop(0.5, "yellow");
+            grd.addColorStop(1, "orange");
+            ctx.fillStyle = grd;
+            ctx.fillRect(0, 0, 512, 512);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // --- 3. CREACIÓN DE OBJETOS ---
+        
+        // Luces
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+        
+        const sunLight = new THREE.PointLight(0xffffff, 2, 3000);
+        scene.add(sunLight);
+
+        // El Sol
+        const sunGeo = new THREE.SphereGeometry(30, 32, 32);
+        const sunMat = new THREE.MeshBasicMaterial({ map: createSunTexture() });
+        const sunMesh = new THREE.Mesh(sunGeo, sunMat);
+        scene.add(sunMesh);
+
+        // Anillo de brillo alrededor del sol
+        const glowGeo = new THREE.SphereGeometry(32, 32, 32);
+        const glowMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, transparent: true, opacity: 0.3, side: THREE.BackSide });
+        const glowMesh = new THREE.Mesh(glowGeo, glowMat);
+        scene.add(glowMesh);
+
+        // Planetas
+        const planets = [];
+        const planetData = [
+            // Nombre, Distancia, Tamaño, ColorBase, ColorDetalle, Complejidad
+            ["Mercurio", 60,  3,  "#aaaaaa", "#555555", 50],
+            ["Venus",    90,  5,  "#eecfa1", "#d2691e", 80],
+            ["Tierra",   130, 5.5,"#2233ff", "#ffffff", 60], // Azul con nubes blancas
+            ["Marte",    170, 4,  "#ff4500", "#8b0000", 70],
+            ["Júpiter",  260, 14, "#daa520", "#8b4513", 150],
+            ["Saturno",  350, 12, "#f4a460", "#cd853f", 120, true], // true = tiene anillo
+            ["Urano",    440, 8,  "#00ffff", "#4682b4", 40],
+            ["Neptuno",  500, 7.5,"#4169e1", "#00008b", 40]
+        ];
+
+        planetData.forEach(data => {
+            const [name, dist, size, col1, col2, complex, ring] = data;
+            
+            const geo = new THREE.SphereGeometry(size, 32, 32);
+            const mat = new THREE.MeshStandardMaterial({ 
+                map: createPlanetTexture(col1, col2, complex),
+                roughness: 0.8
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            
+            // Añadir anillo simple si es necesario
+            if (ring) {
+                const ringGeo = new THREE.RingGeometry(size * 1.4, size * 2.2, 64);
+                const ringMat = new THREE.MeshBasicMaterial({ color: 0xcd853f, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+                const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+                ringMesh.rotation.x = Math.PI / 2;
+                mesh.add(ringMesh);
+            }
+
+            // Datos físicos
+            mesh.position.x = dist;
+            const velocity = Math.sqrt(20 / dist) * 0.5; // Velocidad orbital simplificada
+            
+            planets.push({
+                mesh: mesh,
+                distance: dist,
+                angle: Math.random() * Math.PI * 2,
+                speed: velocity * 0.02,
+                rotSpeed: 0.01 + Math.random() * 0.02
+            });
+
+            scene.add(mesh);
+        });
+
+        // Estrellas de fondo
+        const starsGeo = new THREE.BufferGeometry();
+        const starsCount = 2000;
+        const posArray = new Float32Array(starsCount * 3);
+        for(let i = 0; i < starsCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 4000; // Esparcidas lejos
+        }
+        starsGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const starsMat = new THREE.PointsMaterial({size: 2, color: 0xffffff});
+        const starMesh = new THREE.Points(starsGeo, starsMat);
+        scene.add(starMesh);
+
+        // --- 4. CONTROLES DE CÁMARA MANUALES (Sin librerías externas) ---
+        let camAngle = 0.5;
+        let camHeight = 200;
+        let camDist = 400;
+        let isDragging = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        window.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; lastY = e.clientY; });
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', e => {
+            if(isDragging) {
+                const deltaX = e.clientX - lastX;
+                const deltaY = e.clientY - lastY;
+                camAngle -= deltaX * 0.005;
+                camHeight += deltaY * 2;
+                lastX = e.clientX;
+                lastY = e.clientY;
+            }
+        });
+        window.addEventListener('wheel', e => {
+            camDist += e.deltaY * 0.5;
+            camDist = Math.max(100, Math.min(1000, camDist));
+        });
+
+        // --- 5. BUCLE DE ANIMACIÓN ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Mover Planetas
+            planets.forEach(p => {
+                p.angle += p.speed;
+                p.mesh.position.x = Math.cos(p.angle) * p.distance;
+                p.mesh.position.z = Math.sin(p.angle) * p.distance;
+                p.mesh.rotation.y += p.rotSpeed;
+            });
+
+            // Rotar Sol
+            sunMesh.rotation.y += 0.002;
+
+            // Actualizar Cámara
+            camera.position.x = Math.sin(camAngle) * camDist;
+            camera.position.z = Math.cos(camAngle) * camDist;
+            camera.position.y = camHeight;
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        // Ajustar al redimensionar ventana
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+
+    </script>
 </body>
 </html>
