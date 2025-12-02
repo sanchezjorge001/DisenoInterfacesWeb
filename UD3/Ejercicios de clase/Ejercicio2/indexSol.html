@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solución: Sistema de Cuadrícula en Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container my-5">
+
+    <!-- Uso de Breakpoints y Columnas Responsivas -->
+    <section class="mb-5">
+      <h2>Uso de Breakpoints y Columnas Responsivas</h2>
+      <div class="row">
+        <div class="col-12 col-md-4 col-lg-3 bg-primary text-white text-center p-3">Columna 1</div>
+        <div class="col-12 col-md-6 col-lg-5 bg-secondary text-white text-center p-3">Columna 2</div>
+        <div class="col-12 col-md-2 col-lg-4 bg-success text-white text-center p-3">Columna 3</div>
+      </div>
+    </section>
+
+    <!-- Clases Automáticas y Personalización de Anchos -->
+    <section class="mb-5">
+      <h2>Clases Automáticas y Personalización de Anchos</h2>
+      <!-- Automatic column widths -->
+      <div class="row mb-3">
+        <div class="col bg-info text-white text-center p-3">Columna 1</div>
+        <div class="col bg-warning text-white text-center p-3">Columna 2</div>
+        <div class="col bg-danger text-white text-center p-3">Columna 3</div>
+      </div>
+      <!-- Custom widths -->
+      <div class="row">
+        <div class="col-3 bg-primary text-white text-center p-3">Columna 1</div>
+        <div class="col-2 bg-secondary text-white text-center p-3">Columna 2</div>
+        <div class="col-7 bg-success text-white text-center p-3">Columna 3</div>
+      </div>
+    </section>
+
+    <!-- Control de Espaciado: Márgenes y Separación de Columnas (Gutters) -->
+    <section class="mb-5">
+      <h2>Control de Espaciado: Márgenes y Separación de Columnas (Gutters)</h2>
+      <div class="row gx-3 gy-5">
+        <div class="col-12 bg-primary text-white p-3">Columna 1</div>
+        <div class="col-12 bg-secondary text-white p-3">Columna 2</div>
+        <div class="col-12 bg-success text-white p-3">Columna 3</div>
+      </div>
+
+
+    </section>
+
+    <!-- Alineación y Orden de Columnas -->
+    <section class="mb-5">
+      <h2>Alineación y Orden de Columnas</h2>
+      <div class="row align-items-center">
+        <div class="col-5 order-3 bg-primary text-white text-center p-3">Columna 1</div>
+        <div class="col-3 order-1 bg-secondary text-white text-center p-3">Columna 2</div>
+        <div class="col-4 order-2 bg-success text-white text-center p-3">Columna 3</div>
+      </div>
+    </section>
+
+    <!-- Comportamiento de Cuadrículas en Diseños Complejos -->
+    <section class="mb-5">
+      <h2>Comportamiento de Cuadrículas en Diseños Complejos</h2>
+      <div class="row">
+        <div class="col-8 bg-primary text-white text-center p-3">
+          Columna Principal
+          <div class="row">
+            <div class="col-6 bg-light text-dark p-2">Columna Anidada 1</div>
+            <div class="col-6 bg-dark text-white p-2">Columna Anidada 2</div>
+          </div>
+        </div>
+        <div class="col-4 bg-secondary text-white text-center p-3">Columna Secundaria</div>
+      </div>
+    </section>
+
+  </div>
+
+  <a href="#" class="btn btn-primary">Enlace como Botón</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

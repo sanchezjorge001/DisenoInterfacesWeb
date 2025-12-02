@@ -34,6 +34,3 @@ Practicar todos los aspectos fundamentales del sistema de cuadrícula de Bootstr
    - Revisa el diseño en diferentes tamaños de pantalla para verificar que las columnas se ajustan correctamente a los breakpoints.
    - Asegúrate de que todos los puntos funcionen según lo especificado en dispositivos pequeños, medianos y grandes.
 
----
-
-Este ejercicio les permitirá comprender de manera práctica cómo funciona el sistema de cuadrícula de Bootstrap y cómo controlar el diseño en función del tamaño de la pantalla. ¡Buena suerte!

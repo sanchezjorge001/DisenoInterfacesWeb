@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Responsive</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<body>
+  <!-- Navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Biblioteca Central</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#secciones">Secciones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#novedades">Novedades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Encabezado -->
+  <header class="bg-primary text-light text-center py-3">
+    <h1 class="fs-1">Biblioteca Central</h1>
+    <p>Explora nuestro catálogo y novedades</p>
+  </header>
+  
+  <main class="container my-4">
+    <!-- Sistema de cuadrícula -->
+    <section id="secciones" class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <img src="https://placehold.co/300x200" class="card-img-top img-fluid" alt="Ficción">
+          <div class="card-body">
+            <h5 class="card-title fs-5">Ficción</h5>
+            <p class="card-text">Descubre las mejores novelas de ficción.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <img src="https://placehold.co/300x200" class="card-img-top img-fluid" alt="No Ficción">
+          <div class="card-body">
+            <h5 class="card-title fs-5">No Ficción</h5>
+            <p class="card-text">Aprende con los mejores libros de no ficción.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <img src="https://placehold.co/300x200" class="card-img-top img-fluid" alt="Revistas">
+          <div class="card-body">
+            <h5 class="card-title fs-5">Revistas</h5>
+            <p class="card-text">Explora nuestra colección de revistas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Novedades -->
+    <section id="novedades" class="mt-4">
+      <h2 class="fs-4 text-center">Novedades</h2>
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+          <div class="card">
+            <img src="https://placehold.co/300x200" class="card-img-top img-fluid" alt="Novedad 1">
+            <div class="card-body">
+              <h5 class="card-title">Libro 1</h5>
+              <p class="card-text">Descripción breve del libro 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+          <div class="card">
+            <img src="https://placehold.co/300x200" class="card-img-top img-fluid" alt="Novedad 2">
+            <div class="card-body">
+              <h5 class="card-title">Libro 2</h5>
+              <p class="card-text">Descripción breve del libro 2.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+          <div class="card">
+            <img src="https://placehold.co/300x200" class="card-img-top img-fluid" alt="Novedad 3">
+            <div class="card-body">
+              <h5 class="card-title">Libro 3</h5>
+              <p class="card-text">Descripción breve del libro 3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer id="contacto" class="text-center py-3 bg-dark text-light">
+    <p>Síguenos en nuestras redes sociales:</p>
+    <div>
+      <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i> Facebook</a>
+      <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i> Twitter</a>
+      <a href="#" class="text-light"><i class="bi bi-instagram"></i> Instagram</a>
+    </div>
+    <div class="d-none d-md-block mt-3">
+      Contáctanos: biblioteca@example.com
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
